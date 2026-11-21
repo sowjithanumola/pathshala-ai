@@ -8,7 +8,7 @@ import {
   ArrowRight, Award, BookOpen, Bookmark, CalendarDays, Check, CheckCircle2, ChevronRight,
   CircleHelp, Clock3, Compass, Download, FileText, Flame, GraduationCap, Home, Languages,
   LayoutDashboard, Library, Lightbulb, LogOut, Menu, MessageCircle, Moon, NotebookPen,
-  Search, Settings, ShieldCheck, Sparkles, Target, Trash2, Trophy, UserRound, X, Zap
+  Search, Settings, ShieldCheck, Sparkles, Target, Trash2, Trophy, UserRound, Volume2, X, Zap
 } from 'lucide-react';
 import { auth, db } from './lib/firebase';
 
