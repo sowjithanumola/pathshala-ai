@@ -8,7 +8,7 @@ A responsive learning workspace built with React, TypeScript, Vite and Firebase.
 
 - Email/password and Google popup registration/sign-in, password reset and sign-out
 - Learner profile, preferred-language setting and light/dark appearance
-- 33 built-in sample lessons across Mathematics, Science, English, Social Studies, Language Lab and Study Skills
+- 35 built-in sample lessons across Mathematics, Science, English, Social Studies, Language Lab and Study Skills
 - Lesson reader, completion tracking, saved lessons and progress overview
 - Short multiple-choice knowledge checks with instant explanations
 - Visual learning cards, notebook and study planner
