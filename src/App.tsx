@@ -47,7 +47,7 @@ type Task = {id:string;title:string;date:string;done:boolean};
 const readLocal = <T,>(key:string,fallback:T):T => { try { const value=localStorage.getItem(key); return value ? JSON.parse(value) as T : fallback; } catch { return fallback; } };
 
 export default function App() {
- const [user,setUser]=useState<User|null>(null),[authReady,setAuthReady]=useState(false),[mode,setMode]=useState<'login'|'register'>('register');
+ const [user,setUser]=useState<User|null>(null),[authReady,setAuthReady]=useState(false),[localReady,setLocalReady]=useState(false),[mode,setMode]=useState<'login'|'register'>('register');
  const [name,setName]=useState(''),[email,setEmail]=useState(''),[password,setPassword]=useState(''),[authError,setAuthError]=useState(''),[busy,setBusy]=useState(false);
  const [page,setPage]=useState('dashboard'),[menuOpen,setMenuOpen]=useState(false),[query,setQuery]=useState(''),[subject,setSubject]=useState('All subjects');
  const [completed,setCompleted]=useState<string[]>([]),[saved,setSaved]=useState<string[]>([]),[notes,setNotes]=useState<Note[]>([]),[tasks,setTasks]=useState<Task[]>([]);
@@ -57,12 +57,12 @@ export default function App() {
  const [tutorQuestion,setTutorQuestion]=useState(''),[tutorReply,setTutorReply]=useState(''),[profileName,setProfileName]=useState(''),[profileError,setProfileError]=useState('');
  const [showDelete,setShowDelete]=useState(false),[deletePassword,setDeletePassword]=useState(''),[resetMessage,setResetMessage]=useState('');
  useEffect(()=>onAuthStateChanged(auth,current=>{setUser(current);setAuthReady(true);}),[]);
- useEffect(()=>{if(!user){setCompleted([]);setSaved([]);setNotes([]);setTasks([]);return;}setProfileName(user.displayName||'');const prefix='pathshala-'+user.uid;setCompleted(readLocal(prefix+'-completed',[]));setSaved(readLocal(prefix+'-saved',[]));setNotes(readLocal(prefix+'-notes',[]));setTasks(readLocal(prefix+'-tasks',[]));const load=async()=>{try{const snap=await getDoc(doc(db,'users',user.uid));const data=snap.data();if(data){setCompleted(Array.isArray(data.completedLessons)?data.completedLessons:[]);setSaved(Array.isArray(data.savedLessons)?data.savedLessons:[]);setNotes(Array.isArray(data.notes)?data.notes:[]);setTasks(Array.isArray(data.tasks)?data.tasks:[]);setLanguage(typeof data.language==='string'?data.language:'English');setTheme(data.theme==='dark'?'dark':'light');}}catch{setProfileError('Cloud sync is unavailable. Your saved data on this device remains available.');}};void load();},[user]);
+ useEffect(()=>{if(!user){setLocalReady(false);setCompleted([]);setSaved([]);setNotes([]);setTasks([]);return;}setLocalReady(false);setProfileName(user.displayName||'');const prefix='pathshala-'+user.uid;setCompleted(readLocal(prefix+'-completed',[]));setSaved(readLocal(prefix+'-saved',[]));setNotes(readLocal(prefix+'-notes',[]));setTasks(readLocal(prefix+'-tasks',[]));setLocalReady(true);const load=async()=>{try{const snap=await getDoc(doc(db,'users',user.uid));const data=snap.data();if(data){setCompleted(Array.isArray(data.completedLessons)?data.completedLessons:[]);setSaved(Array.isArray(data.savedLessons)?data.savedLessons:[]);setNotes(Array.isArray(data.notes)?data.notes:[]);setTasks(Array.isArray(data.tasks)?data.tasks:[]);setLanguage(typeof data.language==='string'?data.language:'English');setTheme(data.theme==='dark'?'dark':'light');}}catch{setProfileError('Cloud sync is unavailable. Your saved data on this device remains available.');}};void load();},[user]);
  useEffect(()=>{document.documentElement.dataset.theme=theme;},[theme]);
- useEffect(()=>{if(user)localStorage.setItem('pathshala-'+user.uid+'-completed',JSON.stringify(completed));},[completed,user]);
- useEffect(()=>{if(user)localStorage.setItem('pathshala-'+user.uid+'-saved',JSON.stringify(saved));},[saved,user]);
- useEffect(()=>{if(user)localStorage.setItem('pathshala-'+user.uid+'-notes',JSON.stringify(notes));},[notes,user]);
- useEffect(()=>{if(user)localStorage.setItem('pathshala-'+user.uid+'-tasks',JSON.stringify(tasks));},[tasks,user]);
+ useEffect(()=>{if(user&&localReady)localStorage.setItem('pathshala-'+user.uid+'-completed',JSON.stringify(completed));},[completed,user]);
+ useEffect(()=>{if(user&&localReady)localStorage.setItem('pathshala-'+user.uid+'-saved',JSON.stringify(saved));},[saved,user]);
+ useEffect(()=>{if(user&&localReady)localStorage.setItem('pathshala-'+user.uid+'-notes',JSON.stringify(notes));},[notes,user]);
+ useEffect(()=>{if(user&&localReady)localStorage.setItem('pathshala-'+user.uid+'-tasks',JSON.stringify(tasks));},[tasks,user]);
  const persist=async(patch:Record<string,unknown>)=>{if(!user)return;try{await setDoc(doc(db,'users',user.uid),{...patch,updatedAt:serverTimestamp()},{merge:true});}catch{setProfileError('Cloud sync failed. Check your connection and Firestore rules.');}};
  const filtered=useMemo(()=>lessons.filter(l=>(subject==='All subjects'||l.subject===subject)&&`${l.title} ${l.subject} ${l.description}`.toLowerCase().includes(query.toLowerCase())),[subject,query]);
  const progress=Math.round(completed.length/lessons.length*100);
