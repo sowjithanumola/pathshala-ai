@@ -1,40 +1,47 @@
 # Pathshala AI
 
-Pathshala AI: Learn anything. In any language. Anywhere.
+**Learn anything. In any language. Anywhere.**
 
-## Firebase setup
+A responsive learning workspace built with React, TypeScript, Vite and Firebase.
 
-The web app uses Firebase Authentication (email/password) and Cloud Firestore for each student's saved lesson progress.
+## Included in this build
 
-### 1. Enable email/password sign-in
+- Email/password account registration, sign-in, password reset and sign-out
+- Learner profile, preferred-language setting and light/dark appearance
+- 20 built-in sample lessons across Mathematics, Science, English, Social Studies, Language Lab and Study Skills
+- Lesson reader, completion tracking, saved lessons and progress overview
+- Short multiple-choice knowledge checks with instant explanations
+- Visual learning cards, notebook and study planner
+- JSON export of learner progress and personal study data
+- Account deletion with password reauthentication
+- Account-scoped local cache and an app-shell service worker for basic offline access
+- Responsive desktop and mobile layouts
 
-1. Open the [Firebase Console](https://console.firebase.google.com/).
-2. Select the `pathshala-47248` project.
-3. Open **Build → Authentication → Get started → Sign-in method**.
-4. Enable **Email/Password** and save.
+## Firebase setup required
 
-### 2. Create the Firestore database
+The Firebase Web App config is supplied to Vercel through `VITE_FIREBASE_*` environment variables. For local development, copy `.env.example` to `.env.local` and fill in the values from Firebase Console → Project settings → General → Your apps. Do not commit `.env.local`.
 
-1. Open **Build → Firestore Database**.
-2. Create a database (production mode is recommended).
-3. Choose a database location close to your users. The location cannot easily be changed later.
+1. In [Firebase Authentication](https://console.firebase.google.com/project/pathshala-47248/authentication/providers), enable **Email/Password**.
+2. In [Firestore Database](https://console.firebase.google.com/project/pathshala-47248/firestore), create a database. Choose a region close to your users; database location cannot easily be changed later.
+3. Open Firestore → Rules, paste the contents of [firestore.rules](./firestore.rules), and click **Publish**.
+4. In Authentication → Settings → Authorized domains, ensure the Vercel hostname you use is listed.
+5. Redeploy after changing Vercel environment variables.
 
-### 3. Publish the Firestore security rules
+The included Firestore rules let a signed-in student read and write only their own `users/{uid}` document. Review the rules before adding new collections or server features.
 
-Open **Firestore Database → Rules**, replace the editor contents with the rules in [firestore.rules](./firestore.rules), and click **Publish**.
+## Honest feature notes
 
-These rules allow each signed-in student to read and write only their own `users/{uid}` document.
+- The 20 lessons are starter learning materials, not a complete official curriculum. Review and expand them for the grade, board and syllabus you intend to support.
+- The AI Tutor page currently provides an offline helper for selected built-in lesson topics. It is **not yet connected to a generative AI provider**. To enable open-ended AI answers, add a server-side Vercel API route and keep the provider API key in a non-`VITE_` server environment variable.
+- The language selector saves the learner's preferred language. Full interface translation and translated lesson content are not yet implemented.
+- Offline support caches the app shell and keeps study data in a browser-local cache scoped to the signed-in Firebase user. First-time sign-in and cloud synchronization require internet access. Browser storage can be cleared by the browser or device.
+- Account deletion removes the Firebase Authentication account and its Firestore profile document. If you add future subcollections or external services, include those in the deletion workflow too.
 
-### 4. Authorize the deployed domain
+## Local development
 
-In **Authentication → Settings → Authorized domains**, ensure the Vercel domain used by this project is listed. Add the exact hostname if it is missing. Also add `localhost` if you test locally.
+```bash
+npm install
+npm run dev
+```
 
-### 5. Environment variables
-
-The production/preview/development Vercel environments are configured with the Firebase Web App settings. For local development, copy `.env.example` to `.env.local` and fill in the values from Firebase Console → Project settings → General → Your apps.
-
-Do not commit `.env.local`. Firebase web configuration is designed to be present in browser apps; Firestore Security Rules protect student data. Never put private AI API keys in variables prefixed with `VITE_`.
-
-## Current learning content
-
-The dashboard currently includes four sample lessons. These are starter/demo entries, not a complete curriculum or a verified syllabus.
+`npm run build` runs TypeScript checking and creates the production Vite build.
