@@ -1,32 +1,39 @@
-# Pathshala AI
+# 🚀 ACE BUILDERS — CODEBENDERS HACKATHON 2026
 
-**Learn anything. In any language. Anywhere.**
+> **Build. Get Discovered. Belong. Keep Building.**  
+> *Nov 21–22, 2026 • Global Online • Solo or Duo*
 
-A responsive, offline-capable learning workspace built with **React**, **TypeScript**, **Vite**, and **Firebase**. Designed to run entirely standalone without requiring external AI providers or third-party inference APIs.
-
----
-
-## Key Features
-
-### Learning & Curriculum
-- **Curated Starter Library:** 35 built-in lessons spanning Mathematics, Science, English, Social Studies, Language Lab, and Study Skills.
-- **Interactive Lesson Reader:** Clean reading interface featuring bookmarking (saved lessons), completion tracking, and a centralized progress overview.
-- **Knowledge Checks:** Integrated multiple-choice quizzes with immediate feedback and explanations.
-
-### Productivity & Study Tools
-- **Study Workspace:** Built-in digital notebook, visual flashcards, interactive calendar, and a customizable weekly timetable.
-- **Data Portability:** One-click JSON export for backing up learner progress and personal study data.
-- **Personalization:** Customizable learner profiles, preferred-language settings, and seamless light/dark theme switching.
-
-### Architecture & Security
-- **Authentication:** Email/password and Google OAuth popup sign-in, password recovery, and secure account deletion (enforced via password re-authentication).
-- **Offline-First Caching:** Account-scoped local storage paired with an app-shell service worker for reliable offline access.
-- **Responsive Design:** Adaptive layouts optimized for both desktop and mobile viewports.
+A showcase for the **CodeBenders ACE Builders Hackathon 2026** and solo builder **Sowjith Anumola**.
 
 ---
 
-## Local Development
+## 🛠️ Official Hackathon Workflow
 
-1. **Install dependencies:**
-   ```bash
-   npm install
+1. **Create Account:** Sign up on the official CodeBenders portal to register for the event.
+2. **Claim Coupon:** Retrieve your hackathon access credentials and builder pass.
+3. **Install IDE:** Set up the CodeBenders AI-native development environment.
+4. **Build & Ship:** Build your project solo or as a duo and submit before the deadline.
+
+---
+
+## 🔗 Official CodeBenders & Hackathon Links
+
+| Platform | Title | Description | Link |
+| :--- | :--- | :--- | :--- |
+| **CodeBenders** | ACE Builders — CodeBenders | Explore the official hackathon page | [Visit Portal](https://app.codebenders.ai/hackathon) |
+| **Luma Event** | ACE Builders Hackathon 2026 | View event details, schedule & RSVP | [View Event](https://luma.com/feg10p0d) |
+
+---
+
+## 👨‍💻 Solo Builder Profile
+
+**Sowjith Anumola** — *Sowjith, solo coder*
+
+| Platform | Handle / Title | Description | Link |
+| :--- | :--- | :--- | :--- |
+| **Portfolio** | Sowjith Anumola — Portfolio | Explore personal portfolio, projects, and creations | [sowjithanumola.work](https://sowjithanumola.work) |
+| **Instagram** | `@i.am.sowjith` | Follow on Instagram | [instagram.com/i.am.sowjith](https://www.instagram.com/i.am.sowjith/) |
+
+---
+
+*Built by [Sowjith Anumola](https://sowjithanumola.work) • ACE Builders Hackathon 2026*
