@@ -4,13 +4,13 @@
 
 > *Built for the CodeBenders Hackathon.*
 
-Pathshala AI is a modern, responsive, offline-capable learning workspace designed to provide an immersive, modular educational experience. Built with a robust frontend stack and progressive web application (PWA) features, it delivers seamless learning tools right to your browser or device.
+Pathshala AI is a modern, responsive, offline-capable learning workspace built with React, TypeScript, Vite, and Firebase. It features a complete educational suite tailored for students and independent learners.
 
 ---
 
-## 🏛️ Official Feature Structure
+## 🏛️ Official Feature Structure (10 Core Modules)
 
-Pathshala AI is organized around ten core learning modules accessible directly from the workspace sidebar:
+Pathshala AI is organized around ten core learning modules accessible directly from the workspace interface:
 
 | # | Feature | Description |
 |---|---|---|
@@ -32,62 +32,33 @@ Pathshala AI is organized around ten core learning modules accessible directly f
 | Technology | Purpose |
 | :--- | :--- |
 | **React** | User interface and component architecture |
-| **TypeScript** | Strict type safety and predictable code maintainability |
+| **TypeScript** | Strict type safety and maintainable code |
 | **Vite** | Lightning-fast development server and production bundler |
-| **React Router** | Client-side application navigation |
-| **Tailwind CSS / CSS** | Modern, responsive utility-first styling |
-| **Local Storage / IndexedDB** | Robust local data persistence |
-| **Service Worker / PWA** | Offline functionality and installable application shell |
-| **AI Provider Integration** | Smart tutoring and interactive assistance |
+| **Tailwind CSS / PostCSS** | Modern utility-first styling |
+| **Firebase** | Authentication, Firestore database, and backend services |
+| **Service Worker / Local Cache** | Offline functionality and local persistence |
 
 ---
 
-## 🔒 Security Requirements & Best Practices
-
-- **API Key Safety:** Never expose sensitive API keys or credentials in client-side frontend code.
-- **Server-Side Integration:** Use secure server-side routes or edge functions for handling AI provider requests.
-- **Transparent Capabilities:** AI tutoring features require a configured, functioning provider endpoint to operate.
-- **Data Integrity:** Validate all imported user data and local state schemas before persistence.
-
----
-
-## 📁 Application Structure
+## 📁 Actual Project Directory Structure
 
 ```text
 pathshala-ai/
 │
+├── .vscode/
 ├── public/
-│   ├── icons/
-│   ├── manifest.json
-│   └── images/
-│
 ├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── features/
-│   │   ├── dashboard/
-│   │   ├── language-lab/
-│   │   ├── ai-tutor/
-│   │   ├── visual-lab/
-│   │   ├── offline-library/
-│   │   ├── progress/
-│   │   ├── notebook/
-│   │   └── planner/
-│   │
-│   ├── i18n/
-│   │   ├── en/
-│   │   ├── te/
-│   │   ├── hi/
-│   │   ├── es/
-│   │   ├── ar/
-│   │   └── fr/
-│   │
-│   ├── services/
-│   ├── storage/
-│   ├── hooks/
-│   ├── types/
-│   └── App.tsx
-│
+├── .env.example
+├── .env.local
+├── .gitignore
 ├── README.md
+├── firebase.json
+├── firestore.rules
+├── index.html
 ├── package.json
+├── postcss.config.js
+├── tailwind.config.ts
+├── tsconfig.json
+├── tsconfig.node.json
+├── vercel.json
 └── vite.config.ts
