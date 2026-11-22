@@ -170,5 +170,5 @@ See the `LICENSE` file in the repository for the complete license terms.
   <br />
   Learn anything. In any language. Anywhere.
   <br /><br />
-  Built with passion by Sowjith Anumola & Sanjith.
+  Built with passion by Sowjith Anumola & Sanjith Anumola.
 </p>
